@@ -1,0 +1,13 @@
+# render.yaml - Configuración para desplegar la app Streamlit en Render
+
+services:
+  - type: web                # Tipo de servicio: aplicación web
+    name: sprint7-app        # Nombre de tu servicio en Render
+    env: python              # Entorno: Python
+    plan: free               # Plan gratuito de Render
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+                             # Comando para instalar dependencias
+    startCommand: streamlit run app.py --server.port $PORT --server.headless true
+                             # Comando para iniciar la app
+    autoDeploy: true         # Activar despliegue automático al hacer push
+    branch: main             # Rama que se desplegará automáticamente
